@@ -60,10 +60,29 @@ class GibberishPhase extends CBaseVisitor<String> {
 	@Override
 	public String visitDeclaredFunctionPrototype(CParser.DeclaredFunctionPrototypeContext ctx) {
 		String directDecl = visit(ctx.directDeclarator());
-		// TODO: Look at each ... declSpecifiers2
-		String params = rewriter.getText(ctx.parameterTypeList().getSourceInterval());
+		
+		String params = ctx.parameterTypeList() != null ?
+				        visit(ctx.parameterTypeList()) :
+				        "";
 
 		return directDecl + "function (" + params + ") returning ";
+	}
+	
+	@Override
+	public String visitParameterList(CParser.ParameterListContext ctx) {
+		return ((ctx.parameterList() != null) ?
+			    visit(ctx.parameterList()) + ", " :
+			    "") + 
+			   visit(ctx.parameterDeclaration());
+	}
+	
+	@Override
+	public String visitParameterDeclaration(CParser.ParameterDeclarationContext ctx) {
+		String abstrDecl = ctx.abstractDeclarator() != null ?
+				           visit(ctx.abstractDeclarator()) :
+				           "";
+		String declSpecs = visit(ctx.declarationSpecifiers());
+		return abstrDecl + declSpecs;
 	}
 }
 
