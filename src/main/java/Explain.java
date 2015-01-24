@@ -24,7 +24,10 @@ class GibberishPhase extends CBaseVisitor<String> {
 
 	@Override
 	public String visitPointer(CParser.PointerContext ctx) {
-		return "pointer to " + ((ctx.pointer() != null) ? visit(ctx.pointer()) : "");
+		String typeQuals = (ctx.typeQualifierList() != null) ?
+				           rewriter.getText(ctx.typeQualifierList().getSourceInterval()) + " " :
+				           "";
+		return typeQuals + "pointer to " + ((ctx.pointer() != null) ? visit(ctx.pointer()) : "");
 	}
 
 	// because "int x" fucks up, and so "int x = 3" fucks up also, need this:

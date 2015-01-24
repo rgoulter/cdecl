@@ -27,6 +27,15 @@ public class ExplainTest {
 		assertGibberishToEnglish("int x[5][3];",
 		                         "x is array 5 of array 3 of int");
 	}
+	
+	@Test
+	public void testConstPointer() {
+		assertGibberishToEnglish("int * const x;",
+		                         "x is const pointer to int");
+
+		assertGibberishToEnglish("const int * const x;",
+		                         "x is const pointer to const int");
+	}
 
 	@Test
 	public void testArrayAndPointer() {
@@ -54,6 +63,10 @@ public class ExplainTest {
 	
 		assertGibberishToEnglish("int (*x)(int, char*);",
 		                         "x is pointer to function (int, pointer to char) returning int");
+		
+		// from cdecl.org
+		assertGibberishToEnglish("int (*(*foo)(void ))[3];",
+				                 "foo is pointer to function (void) returning pointer to array 3 of int");
 	}
 
 }
