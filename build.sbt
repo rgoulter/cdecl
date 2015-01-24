@@ -10,6 +10,10 @@ antlr4GenListener in Antlr4 := true
 
 antlr4GenVisitor in Antlr4 := true
 
+// Unfortunately, the SBT plugin maintainer doesn't see
+// file-path as a reliable way to define packagename.
+antlr4PackageName in Antlr4 := Some("cdecl")
+
 // Antlr4 4.5-RC
 resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 
