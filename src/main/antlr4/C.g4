@@ -188,9 +188,10 @@ declarationSpecifiers
     :   declarationSpecifier+
     ;
 
-declarationSpecifiers2
-    :   declarationSpecifier+
-    ;
+// No need for our CDecl program
+//declarationSpecifiers2
+//    :   declarationSpecifier+
+//    ;
 
 declarationSpecifier
     :   storageClassSpecifier
@@ -388,7 +389,7 @@ parameterList
 
 parameterDeclaration
     :   declarationSpecifiers declarator
-    |   declarationSpecifiers2 abstractDeclarator?
+    |   declarationSpecifiers abstractDeclarator?
     ;
 
 identifierList
