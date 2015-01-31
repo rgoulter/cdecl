@@ -239,7 +239,7 @@ typeSpecifier
     |   atomicTypeSpecifier
     |   structOrUnionSpecifier
     |   enumSpecifier
-    |   typedefName
+    // |   typedefName // No need for typedef for CDecl.java
     |   '__typeof__' '(' constantExpression ')' // GCC extension
     ;
 

@@ -15,7 +15,7 @@ public class ExplainTest {
 
 	@Test
 	public void test() {
-		assertGibberishToEnglish("int x = 3;",
+		assertGibberishToEnglish("int x;",
 		                         "x is int");
 
 		assertGibberishToEnglish("int *x;",
