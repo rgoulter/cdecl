@@ -1,4 +1,4 @@
-name := "c-decl"
+name := "cdecl"
 
 organization := "edu.nus"
 
@@ -17,3 +17,12 @@ antlr4PackageName in Antlr4 := Some("cdecl")
 antlr4Dependency in Antlr4 := "org.antlr" % "antlr4" % "4.5"
 
 libraryDependencies += "junit" % "junit" % "4.11"
+
+// OSGi Bundling
+osgiSettings
+
+OsgiKeys.bundleVersion := version.value.replace("SNAPSHOT", "qualifier")
+
+OsgiKeys.exportPackage := Seq("cdecl")
+
+OsgiKeys.additionalHeaders := Map("Bundle-Name" -> "CDecl");
